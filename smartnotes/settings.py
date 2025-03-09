@@ -25,7 +25,16 @@ SECRET_KEY = "django-insecure-l+g5r@m-chqo@gvapnp#o+w4nu*%jiq7_o3_&d_^^6*tp-xq3(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev',  # Allow all GitHub Codespace URLs
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost:8000',  # If accessing locally
+    'https://congenial-giggle-gwgqw9jp959c9xwp-8000.app.github.dev'  # Replace with your actual Codespace URL
+]
 
 
 # Application definition
@@ -38,8 +47,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # our app
-    "home"
+    # our apps
+    "home",
+    'notes'
 ]
 
 MIDDLEWARE = [
