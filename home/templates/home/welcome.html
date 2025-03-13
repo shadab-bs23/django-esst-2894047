@@ -4,4 +4,6 @@
     Welcome to SmartNotes homepage!
     <p>Today is {{ today }}</p>
     <a href="{% url 'notes.list' %}" class="btn btn-primary">Smart notes</a>
+
+    {% include "./advantages.html" %}
 {% endblock %}
