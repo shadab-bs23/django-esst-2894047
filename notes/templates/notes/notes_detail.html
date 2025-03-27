@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content%}
+    {% if note.is_public %}
+        <p class="text-warning bg-secondary"> This note is public. </p>
+    {% endif %}
     <h3>{{ note.title }}</h3>
     <p>{{ note.text }}</p>
     <p> Likes: {{ note.likes }}
@@ -9,6 +12,18 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button class="btn btn-info">Like</button>
+</form>
+
+<form method="POST" action="{% url 'notes.change_visibility' pk=note.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">
+        {% if note.is_public %}
+            Make private
+        {% else %}
+            Make public
+        {% endif %}
+    </button>
 </form>
 
 <a href="{% url 'notes.list' %}" class="btn btn-secondary">Back</a>
